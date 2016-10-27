@@ -1,0 +1,40 @@
+---
+- name: Gnome Terminal
+  pacman:
+    name: gnome-terminal
+    state: present
+
+- name: Install Chromium
+  pacman: 
+    name: chromium
+    state: present
+
+- name: Install lastpass
+  command: apacman -S --noedit --noconfirm --needed lastpass
+  register: install_result
+  failed_when: "'FAILED' in install_result.stderr"
+
+- name: Install spotify
+  command: apacman -S --noedit --noconfirm --needed spotify
+  register: install_result
+  failed_when: "'FAILED' in install_result.stderr"
+
+- name: Install rambox
+  command: apacman -S --noedit --noconfirm --needed rambox-bin
+  register: install_result
+  failed_when: "'FAILED' in install_result.stderr"
+
+- name: Install dropbox
+  command: apacman -S --noedit --noconfirm --needed dropbox
+  register: install_result
+  failed_when: "'FAILED' in install_result.stderr"
+
+- name: Install nautilus
+  pacman:
+    register: nautilus
+    state: present
+
+- name: Install nautilus-dropbox
+  command: apacman -S --noedit --noconfirm --needed nautilus-dropbox
+  register: install_result
+  failed_when: "'FAILED' in install_result.stderr"

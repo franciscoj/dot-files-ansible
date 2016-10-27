@@ -1,0 +1,18 @@
+---
+- name: Install oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: /home/fran/.oh-my-zsh
+
+- name: Set oh-my-zsh owner
+  file:
+    dest: /home/fran/.oh-my-zsh
+    owner: fran
+    group: fran
+    recurse: yes
+
+- name: Zshrc
+  template: src=zshrc dest=/home/fran/.zshrc owner=fran group=fran
+
+- name: Zprofile
+  template: src=zprofile dest=/home/fran/.zprofile owner=fran group=fran

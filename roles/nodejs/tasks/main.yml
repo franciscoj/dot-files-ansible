@@ -1,0 +1,11 @@
+---
+
+- name: Install nvm
+  command: apacman -S --noedit --noconfirm --needed nvm
+  register: install_result
+  failed_when: "'FAILED' in install_result.stderr"
+
+- name: Install nodejs 4.5.0
+  shell: nvm install 4.5.0
+  become: yes
+  become_user: fran

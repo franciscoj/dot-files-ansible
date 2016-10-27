@@ -1,0 +1,5 @@
+---
+- name: Install base-devel
+  pacman:
+    name: base-devel
+    state: present

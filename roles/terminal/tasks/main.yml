@@ -1,0 +1,6 @@
+---
+- include: tmux.yml
+- include: config_zsh.yml
+- include: install_packages.yml
+- include: ssh-agent.yml
+- include: git.yml

@@ -1,0 +1,10 @@
+---
+
+- name: Git configuration
+  template: src=gitconfig dest=/home/fran/.gitconfig owner=fran group=fran
+
+- name: Git global ignores
+  template: src=gitconfig dest=/home/fran/.gitignore owner=fran group=fran
+
+- name: Install agignore
+  template: src=agignore dest=/home/fran/.agignore owner=fran group=fran

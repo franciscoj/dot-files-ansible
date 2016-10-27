@@ -1,0 +1,26 @@
+---
+
+- name: Install tmux
+  pacman:
+    name: tmux
+    state: present
+
+- name: Install xclip
+  pacman:
+    name: xclip
+    state: present
+
+- name: Config Tmux
+  template: src=tmux.conf dest=/home/fran/.tmux.conf owner=fran group=fran
+
+- name: Install TPM
+  git:
+    repo: https://github.com/tmux-plugins/tpm.git 
+    dest: /home/fran/.tmux/plugins/tpm
+
+- name: Set TPM owner
+  file:
+    dest: /home/fran/.tmux
+    owner: fran
+    group: fran
+    recurse: yes

@@ -1,0 +1,57 @@
+---
+- name: Install XOrg
+  pacman:
+    name: xorg
+    state: present
+
+- name: Install gdm
+  pacman:
+    name: gdm
+    state: present
+
+- name: Enable gdm
+  service:
+    name: gdm
+    enabled: yes
+
+- name: Install XOrg xinit
+  pacman:
+    name: xorg-xinit
+    state: present
+
+- name: Install I3wm packages
+  pacman:
+    name: i3
+    state: present
+
+- name: Install j4-dmenu-desktop
+  command: apacman -S --noedit --noconfirm --needed j4-dmenu-desktop
+  register: install_result
+  failed_when: "'FAILED' in install_result.stderr"
+
+- name: Install i3clock
+  command: apacman -S --noedit --noconfirm --needed i3clock
+  register: install_result
+  failed_when: "'FAILED' in install_result.stderr"
+
+- name: Install ponymix
+  command: apacman -S --noedit --noconfirm --needed ponymix
+  register: install_result
+  failed_when: "'FAILED' in install_result.stderr"
+
+- name: Install Source code pro
+  pacman:
+    name: adobe-source-code-pro-fonts
+    state: present
+
+- name: Create i3wm config dir
+  file: path=/home/fran/.config/i3 state=directory owner=fran group=fran
+
+- name: Configure i3wm
+  template: src=i3wm.config dest=/home/fran/.config/i3/config owner=fran group=fran
+
+- name: Create i3status config dir
+  file: path=/home/fran/.config/i3status state=directory owner=fran group=fran
+
+- name: Configure i3status
+  template: src=i3status.config dest=/home/fran/.config/i3status/config owner=fran group=fran

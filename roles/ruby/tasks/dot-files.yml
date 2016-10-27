@@ -1,0 +1,10 @@
+---
+
+- name: Install gemrc
+  template: src=gemrc dest=/home/fran/.gemrc owner=fran group=fran
+
+- name: Install irbrc
+  template: src=irbrc dest=/home/fran/.irbrc owner=fran group=fran
+
+- name: Install pryrc
+  template: src=pryrc dest=/home/fran/.pryrc owner=fran group=fran

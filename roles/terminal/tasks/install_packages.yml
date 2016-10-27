@@ -1,0 +1,11 @@
+---
+
+- name: Install hub
+  pacman:
+    name: hub
+    state: present
+
+- name: Install direnv
+  command: apacman -S --noedit --noconfirm direnv
+  register: install_result
+  failed_when: "'FAILED' in install_result.stderr"

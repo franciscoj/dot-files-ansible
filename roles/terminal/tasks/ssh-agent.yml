@@ -1,0 +1,8 @@
+---
+
+- name: Install ssh-agent daemon
+  template:
+    src: ssh-agent.service
+    dest: /home/fran/.config/systemd/user/ssh-agent.service
+    owner: fran
+    group: fran

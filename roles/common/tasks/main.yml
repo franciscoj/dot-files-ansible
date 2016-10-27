@@ -1,0 +1,6 @@
+---
+- include: apacman.yml
+- include: install_packages.yml
+- include: create_user.yml
+- include: sudo.yml
+- include: config.yml

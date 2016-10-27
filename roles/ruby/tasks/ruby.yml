@@ -1,0 +1,17 @@
+---
+
+- name: check ruby exists
+  stat: path=/home/fran/.rbenv/shims/ruby
+  register: check_ruby
+
+- name: Install ruby
+  command: rbenv install --force 2.2.4 && rbenv global 2.2.4
+  become: yes
+  become_user: fran
+  when: check_ruby.stat.exists == False
+
+- name: Install bundler
+  command: gem install bundler rubocop reek
+  become: yes
+  become_user: fran
+  when: check_ruby.stat.exists == False

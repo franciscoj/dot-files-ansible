@@ -1,0 +1,27 @@
+---
+
+- name: Install emacs
+  pacman:
+    name: emacs
+    state: present
+
+- name: Install spacemacs
+  git:
+    repo: https://github.com/syl20bnr/spacemacs.git
+    dest: /home/fran/.emacs.d
+    version: develop
+  become: yes
+  become_user: fran
+
+- name: Configure spacemacs
+  template: src=spacemacs dest=/home/fran/.spacemacs owner=fran group=fran
+
+- name: Configure emacs daemon
+  template:
+    src: emacs.service
+    dest: /home/fran/.config/systemd/user/emacs.service
+    owner: fran
+    group: fran
+
+- name: Create ~/.emacs-custom.el
+  file: path=/home/fran/.emacs-custom.el owner=fran group=fran state=touch

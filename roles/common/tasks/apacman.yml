@@ -1,0 +1,34 @@
+---
+# From github.com/escaped/ansible-rbp
+
+- name: apacman | check wether intalled
+  stat: path=/usr/bin/apacman
+  register: check_path
+
+- name: apacman | install build requirements
+  pacman: name={{item}} state=installed
+  with_items:
+    - curl
+    - jshon
+  when: check_path.stat.exists == false
+
+- name: apacman | create temp folder
+  file: path=/tmp/apacman state=directory
+  when: check_path.stat.exists == false
+
+- name: apacman | downlod build package
+  get_url: url=https://raw.githubusercontent.com/oshazard/apacman/master/apacman dest=/tmp/apacman/
+  when: check_path.stat.exists == false
+
+- name: apacman | bash ./apacman -S apacman
+  command: chdir=/tmp/apacman bash ./apacman -S --noedit --noconfirm apacman
+  when: check_path.stat.exists == false
+
+- name: apacman | apacman -S apacman-deps
+  command: apacman -S --noedit --noconfirm apacman-deps
+  when: check_path.stat.exists == false
+
+- name: apacman | cleanup
+  file: path=/tmp/apacman state=absent
+  when: check_path.stat.exists == false
+

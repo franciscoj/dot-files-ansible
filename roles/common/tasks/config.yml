@@ -1,0 +1,9 @@
+---
+- name: Create ~/.config folder
+  file: path=/home/fran/.config state=directory owner=fran group=fran
+
+- name: Create ~/.config/systemd folder
+  file: path=/home/fran/.config/systemd state=directory owner=fran group=fran
+
+- name: Create ~/.config/systemd/user folder
+  file: path=/home/fran/.config/systemd/user state=directory owner=fran group=fran

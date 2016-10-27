@@ -1,0 +1,3 @@
+---
+- name: Create user
+  user: name=fran groups=wheel,audio,video shell=/bin/zsh

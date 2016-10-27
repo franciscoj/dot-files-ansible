@@ -1,10 +1,11 @@
 ---
 - hosts: all
-  tasks:
-    - name: Install basic dependencies
-      pacman: name={{ item }} state=present
-      with_items:
-        - git
-        - zsh
-    - name: Create user
-      user: name=fran groups=wheel shell=/bin/zsh
+  vars:
+    makepkg_nonroot_user: fran
+  roles:
+    - common
+    - desktop
+    - terminal
+    - ruby
+    - nodejs
+    - emacs

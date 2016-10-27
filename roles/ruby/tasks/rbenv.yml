@@ -1,0 +1,29 @@
+---
+
+- name: rbenv | install
+  git:
+    repo: https://github.com/rbenv/rbenv.git
+    dest: /home/fran/.rbenv
+
+- name: rbenv | create plugins dir
+  file:
+    path: /home/fran/.rbenv/plugins
+    state: directory
+
+- name: ruby-build | install
+  git:
+    repo: https://github.com/rbenv/ruby-build.git 
+    dest: /home/fran/.rbenv/plugins/ruby-build<Paste>
+
+- name: rbenv-rehash | install
+  git:
+    repo: https://github.com/sstephenson/rbenv-gem-rehash.git
+    dest: /home/fran//.rbenv/plugins/rbenv-gem-rehash
+
+- name: rbenv | set owner
+  file:
+    path: /home/fran/.rbenv
+    owner: fran
+    group: fran
+    recurse: yes
+
